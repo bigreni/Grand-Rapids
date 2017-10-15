@@ -84,7 +84,7 @@ AppRate.promptForRating(false);
 function loadDirections() {
         $('.js-next-bus-results').html('').hide(); // reset output container's html
         document.getElementById('btnSave').style.visibility = "hidden";
-        $("#message").text = '';
+        $("#message").text('');
         $("#routeStopSelect").attr("disabled", "");
         $("#routeStopSelect").val('0');
 
@@ -117,7 +117,7 @@ function loadDirections() {
 function loadStops() {
         $('.js-next-bus-results').html('').hide(); // reset output container's html
         document.getElementById('btnSave').style.visibility = "hidden";
-        $("#message").text = '';
+        $("#message").text('');
 
     $.ajax(
           {
