@@ -72,8 +72,8 @@ function askRating()
   usesUntilPrompt: 10,
   promptAgainForEachNewVersion: true,
   storeAppURL: {
-                ios: '1225698349',
-                android: 'market://details?id=com.grandrapids.withads'
+                ios: '1296631802',
+                android: 'market://details?id=com.grandrapids.free'
                }
 };
  
@@ -82,7 +82,12 @@ AppRate.promptForRating(false);
 
 
 function loadDirections() {
-//        var template = _.template('<select class="form-control" name="direction" id="routeDirectionSelect"><option value="">- Select Direction -</option><%=options%></select>');
+        $('.js-next-bus-results').html('').hide(); // reset output container's html
+        document.getElementById('btnSave').style.visibility = "hidden";
+        $("#message").text = '';
+        $("#routeStopSelect").attr("disabled", "");
+        $("#routeStopSelect").val('0');
+
         var direction = $("#routeSelect").find('option:selected').attr('data-direction') || false;
         var route = $("#routeSelect").val();
         if(direction == 'EW') {
@@ -110,6 +115,10 @@ function loadDirections() {
 
 
 function loadStops() {
+        $('.js-next-bus-results').html('').hide(); // reset output container's html
+        document.getElementById('btnSave').style.visibility = "hidden";
+        $("#message").text = '';
+
     $.ajax(
           {
               type: "GET",
