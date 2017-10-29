@@ -38,12 +38,14 @@
     function registerAdEvents() {
         // new events, with variable to differentiate: adNetwork, adType, adEvent
         document.addEventListener('onAdFailLoad', function (data) {
-
+            document.getElementById('screen').style.display = 'none';     
         });
         document.addEventListener('onAdLoaded', function (data) { });
         document.addEventListener('onAdPresent', function (data) { });
         document.addEventListener('onAdLeaveApp', function (data) { });
-        document.addEventListener('onAdDismiss', function (data) { });
+        document.addEventListener('onAdDismiss', function (data) { 
+            document.getElementById('screen').style.display = 'none';     
+        });
     }
 
     function createSelectedBanner() {
@@ -51,7 +53,7 @@
     }
 
     function loadInterstitial() {
-        AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: true, autoShow: true });
+        AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
     }
 
    function checkFirstUse()
@@ -62,6 +64,7 @@
 
         initApp();
         askRating();
+        //document.getElementById('screen').style.display = 'none';     
     }
 
 function askRating()
