@@ -62,9 +62,9 @@
         $("span").remove();
         $(".dropList").select2();
 
-        initApp();
-        askRating();
-        //document.getElementById('screen').style.display = 'none';     
+        //initApp();
+        //askRating();
+        document.getElementById('screen').style.display = 'none';     
     }
 
 function askRating()
