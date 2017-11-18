@@ -122,34 +122,52 @@ function loadStops() {
         document.getElementById('btnSave').style.visibility = "hidden";
         $("#message").text('');
 
-    $.ajax(
-          {
-              type: "GET",
-              url: "https://ridetherapid.ddmstaging.com/api/routes/stops",
-              data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(),
-              contentType: "application/json;	charset=utf-8",
-              dataType: "json",
-              success: function (msg) {
-                  if (msg == null || msg.length == 0) {
-                      return;
-                  }
+        var request = new XMLHttpRequest();
+        request.open("GET", "https://ridetherapid.ddmstaging.com/api/routes/stops?routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(), true);
+        request.onreadystatechange = function () {//Call a function when the state changes.
+            if (request.readyState == 4) {
+                if (request.status == 200 || request.status == 0) {
+                    var msg = JSON.parse(request.responseText);
+                    var list = $("#routeStopSelect");
+                    $(list).empty();
+                    $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
+                    $.each(msg, function (index, item) {
+                        $(list).append($("<option />").val(item.id).text(item.name));
+                    });
+                    $(list).removeAttr('disabled');
+                    $(list).val('0');
+                    $("span").remove();
+                    $(".dropList").select2();
+                }
+            }
+        }
+    //$.ajax(
+    //      {
+    //          type: "GET",
+    //          url: "https://ridetherapid.ddmstaging.com/api/routes/stops",
+    //          data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(),
+    //          contentType: "application/json;	charset=utf-8",
+    //          dataType: "json",
+    //          success: function (msg) {
+    //              if (msg == null || msg.length == 0) {
+    //                  return;
+    //              }
 
-                  var list = $("#routeStopSelect");
-                  $(list).empty();
-                  $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
-                  $.each(msg, function (index, item) {
-                      $(list).append($("<option />").val(item.id).text(item.name));
-                  });
-                  $(list).removeAttr('disabled');
-                  $(list).val('0');
-              },
-              error: function () {
-              }
-          }
-        );
-        $("span").remove();
-        $(".dropList").select2();
-}
+    //              var list = $("#routeStopSelect");
+    //              $(list).empty();
+    //              $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
+    //              $.each(msg, function (index, item) {
+    //                  $(list).append($("<option />").val(item.id).text(item.name));
+    //              });
+    //              $(list).removeAttr('disabled');
+    //              $(list).val('0');
+    //          },
+    //          error: function () {
+    //          }
+    //      }
+    //    );
+    request.send();
+    }
 
 function loadArrivals() {
     //https://ridetherapid.ddmstaging.com/api/routes/routeStopInfo?routeNumber=2&direction=Northbound&stopID=806&manualStopID=
