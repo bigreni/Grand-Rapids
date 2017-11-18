@@ -123,7 +123,7 @@ function loadStops() {
         $("#message").text('');
 
         var request = new XMLHttpRequest();
-        request.open("GET", "https://ridetherapid.ddmstaging.com/api/routes/stops?routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(), true);
+        request.open("GET", "https://m.ridetherapid.org/api/routes/stops?routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(), true);
         request.onreadystatechange = function () {//Call a function when the state changes.
             if (request.readyState == 4) {
                 if (request.status == 200 || request.status == 0) {
@@ -176,7 +176,7 @@ function loadArrivals() {
     $.ajax(
           {
               type: "GET",
-              url: "https://ridetherapid.ddmstaging.com/api/routes/routeStopInfo",
+              url: "https://m.ridetherapid.org/api/routes/routeStopInfo",
               data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val() + "&stopID=" + $("#routeStopSelect").val() + "&manualStopID=",
               contentType: "application/json;	charset=utf-8",
               dataType: "text",
