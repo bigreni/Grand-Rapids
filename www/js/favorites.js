@@ -59,7 +59,7 @@ function loadFaveArrivals(route,direction,stop)
     $.ajax(
           {
               type: "GET",
-              url: "https://ridetherapid.ddmstaging.com/api/routes/routeStopInfo",
+              url: "https://m.ridetherapid.org/api/routes/routeStopInfo",
               data: "routeNumber=" + route + "&direction=" + direction + "&stopID=" + stop + "&manualStopID=",
               contentType: "application/json;	charset=utf-8",
               dataType: "text",
