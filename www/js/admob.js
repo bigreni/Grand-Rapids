@@ -122,33 +122,31 @@ function loadStops() {
         document.getElementById('btnSave').style.visibility = "hidden";
         $("#message").text('');
 
-    //$.ajax(
-    //      {
-    //          type: "GET",
-    //          url: "https://ridetherapid.ddmstaging.com/api/routes/stops",
-    //          data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(),
-    //          contentType: "application/json;	charset=utf-8",
-    //          dataType: "json",
-    //          success: function (msg) {
-    //              if (msg == null || msg.length == 0) {
-    //                  return;
-    //              }
+    $.ajax(
+          {
+              type: "GET",
+              url: "https://ridetherapid.ddmstaging.com/api/routes/stops",
+              data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(),
+              contentType: "application/json;	charset=utf-8",
+              dataType: "json",
+              success: function (msg) {
+                  if (msg == null || msg.length == 0) {
+                      return;
+                  }
 
-    //              var list = $("#routeStopSelect");
-    //              $(list).empty();
-    //              $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
-    //              $.each(msg, function (index, item) {
-    //                  $(list).append($("<option />").val(item.id).text(item.name));
-    //              });
-    //              $(list).removeAttr('disabled');
-    //              $(list).val('0');
-    //          },
-    //          error: function () {
-    //          }
-    //      }
-    //    );
-        var list = $("#routeStopSelect");
-        $(list).removeAttr('disabled');
+                  var list = $("#routeStopSelect");
+                  $(list).empty();
+                  $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
+                  $.each(msg, function (index, item) {
+                      $(list).append($("<option />").val(item.id).text(item.name));
+                  });
+                  $(list).removeAttr('disabled');
+                  $(list).val('0');
+              },
+              error: function () {
+              }
+          }
+        );
         $("span").remove();
         $(".dropList").select2();
 }
