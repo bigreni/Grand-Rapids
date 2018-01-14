@@ -61,7 +61,9 @@
         $('#simplemenu').sidr();
         $("span").remove();
         $(".dropList").select2();
-
+        window.ga.startTrackerWithId('UA-88579601-5', 1, function(msg) {
+            window.ga.trackView('Home');
+        });
         initApp();
         askRating();
         //document.getElementById('screen').style.display = 'none';     
@@ -141,36 +143,10 @@ function loadStops() {
                 }
             }
         }
-    //$.ajax(
-    //      {
-    //          type: "GET",
-    //          url: "https://ridetherapid.ddmstaging.com/api/routes/stops",
-    //          data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(),
-    //          contentType: "application/json;	charset=utf-8",
-    //          dataType: "json",
-    //          success: function (msg) {
-    //              if (msg == null || msg.length == 0) {
-    //                  return;
-    //              }
-
-    //              var list = $("#routeStopSelect");
-    //              $(list).empty();
-    //              $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
-    //              $.each(msg, function (index, item) {
-    //                  $(list).append($("<option />").val(item.id).text(item.name));
-    //              });
-    //              $(list).removeAttr('disabled');
-    //              $(list).val('0');
-    //          },
-    //          error: function () {
-    //          }
-    //      }
-    //    );
     request.send();
     }
 
 function loadArrivals() {
-    //https://ridetherapid.ddmstaging.com/api/routes/routeStopInfo?routeNumber=2&direction=Northbound&stopID=806&manualStopID=
     var outputContainer = $('.js-next-bus-results');
 
     $.ajax(
@@ -191,4 +167,10 @@ function loadArrivals() {
                   }
               }
           });
+}
+
+function loadFaves()
+{
+    window.ga.trackView('Favorites');
+    window.location = "Favorites.html";
 }
