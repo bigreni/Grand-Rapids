@@ -24,9 +24,6 @@
     "cordova-plugin-geolocation": {
       "GPS_REQUIRED": "true",
       "PACKAGE_NAME": "com.grandrapids.free"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.grandrapids.free"
     }
   },
   "dependent_plugins": {

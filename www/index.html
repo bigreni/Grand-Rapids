@@ -65,38 +65,32 @@
  					<div>
 						<label for="route">Route:</label>
 						    <select name="routeNumber" id="routeSelect" class="dropList" onchange="loadDirections();">
-                                <option value="0" selected disabled>- Select Route -</option>
-    			                <option  value="90" data-direction="NS">(SL) Silver Line</option>
-                                <option  value="1" data-direction="NS">(1) Division</option>
-                                <option  value="2" data-direction="NS">(2) Kalamazoo</option>
-                                <option  value="3" data-direction="NS">(3) Madison</option>
-                                <option  value="4" data-direction="NS">(4) Eastern</option>
-                                <option  value="5" data-direction="NS">(5) Wealthy/Woodland</option>
-                                <option  value="6" data-direction="NS">(6) Eastown/Woodland </option>
-                                <option  value="7" data-direction="EW">(7) West Leonard</option>
-                                <option  value="8" data-direction="NS">(8) Grandville/Rivertown</option>
-                                <option  value="9" data-direction="NS">(9) Alpine</option>
-                                <option  value="10" data-direction="NS">(10) Clyde Park</option>
-                                <option  value="11" data-direction="NS">(11) Plainfield</option>
-                                <option  value="12" data-direction="EW">(12) West Fulton</option>
-                                <option  value="13" data-direction="NS">(13) Michigan/Fuller North</option>
-                                <option  value="14" data-direction="EW">(14) East Fulton</option>
-                                <option  value="15" data-direction="EW">(15) East Leonard</option>
-                                <option  value="16" data-direction="NS">(16) Wyoming/Metro Health</option>
-                                <option  value="17" data-direction="NS">(17) Woodland Mall/Airport</option>
-                                <option  value="18" data-direction="EW">(18) Westside</option>
-                                <option  value="19" data-direction="EW">(19) Michigan Crosstown</option>
-                                <option  value="20" data-direction="EW">(20) Dash West</option>
-                                <option  value="22" data-direction="NS">(22) Dash North</option>
-                                <option  value="24" data-direction="EW">(24) Burton Crosstown</option>
-                                <option  value="28" data-direction="EW">(28) 28th St Crosstown</option>
-                                <option  value="37" data-direction="Loop">(37) North Campus </option>
-                                <option  value="44" data-direction="EW">(44) 44th St Crosstown</option>
-                                <option  value="48" data-direction="Loop">(48) South Campus </option>
-                                <option  value="50" data-direction="EW">(50) GVSU Connector</option>
-                                <option  value="60" data-direction="EW">(60) GRCC</option>
-                                <option  value="85" data-direction="Loop">(85) Combined 37/48</option>    		
-                                <option  value="100" data-direction="NS">(100) Ferris State</option>
+                            <option value="90" data-direction="NS">(SL) Silver Line</option>
+							<option value="1" data-direction="NS">(1) Division/Madison</option>
+							<option value="2" data-direction="NS">(2) Kalamazoo</option>
+							<option value="3" data-direction="NS">(3) Wyoming/Rivertown</option>
+							<option value="4" data-direction="NS">(4) Eastern</option>
+							<option value="5" data-direction="NS">(5) Wealthy/Woodland</option>
+							<option value="6" data-direction="NS">(6) Eastown/Woodland </option>
+							<option value="7" data-direction="EW">(7) West Leonard</option>
+							<option value="8" data-direction="NS">(8) Prairie/Rivertown</option>
+							<option value="9" data-direction="NS">(9) Alpine</option>
+							<option value="10" data-direction="NS">(10) Clyde Park</option>
+							<option value="11" data-direction="NS">(11) Plainfield</option>
+							<option value="12" data-direction="EW">(12) Westside</option>
+							<option value="13" data-direction="NS">(13) Michigan/Fuller</option>
+							<option value="14" data-direction="EW">(14) East Fulton</option>
+							<option value="15" data-direction="EW">(15) East Leonard</option>
+							<option value="24" data-direction="EW">(24) Burton</option>
+							<option value="27" data-direction="Loop">(27) Airport Industrial</option>
+							<option value="28" data-direction="EW">(28) West 28th</option>
+							<option value="29" data-direction="EW">(29) East 28th</option>
+							<option value="37" data-direction="Loop">(37) GVSU North Campus </option>
+							<option value="44" data-direction="EW">(44) 44th Street</option>
+							<option value="45" data-direction="EW">(LL) Laker Line</option>
+							<option value="48" data-direction="Loop">(48) GVSU South Campus </option>
+							<option value="60" data-direction="Loop">(60) GRCC</option>
+							<option value="85" data-direction="Loop">(85) Combined 37/48</option>
                             </select>
                		</div>
 				
@@ -119,7 +113,9 @@
                   <div class="js-next-bus-results" style="display:none; text-align: center;">
                  </div>
         </div>
-</div><div id="footer">
+</div>
+
+<div id="footer">
   <div class="col-xs-12 navbar-inverse navbar-fixed-bottom">
   <div class="row" id="bottomNav">
     <div class="col-xs-6 text-center"><a href="index.html"><i class="glyphicon glyphicon-time"></i><br>Arrivals</a></div>
@@ -128,6 +124,7 @@
   </div>
 </div>
 
-        <script type='text/javascript' src="js/bootstrap.min.js"></script></div>
+        <script type='text/javascript' src="js/bootstrap.min.js"></script>
+</div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 platform :ios, '11.0'
 
-target 'C:\Users\nai\Documents\GitHub\Grand-Rapids\platforms\ios\The Rapid Bus Tracker' do
-	project 'C:\Users\nai\Documents\GitHub\Grand-Rapids\platforms\ios\The Rapid Bus Tracker.xcodeproj'
+target 'C:\Users\naiar\Documents\GitHub\Grand-Rapids\platforms\ios\The Rapid Bus Tracker' do
+	project 'C:\Users\naiar\Documents\GitHub\Grand-Rapids\platforms\ios\The Rapid Bus Tracker.xcodeproj'
 
 end

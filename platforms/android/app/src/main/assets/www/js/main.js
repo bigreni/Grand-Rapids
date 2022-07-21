@@ -41,10 +41,13 @@
             document.getElementById('screen').style.display = 'none';     
         });
         document.addEventListener('onAdLoaded', function (data) {
-            AdMob.showInterstitial();
+            document.getElementById('screen').style.display = 'none';     
+            // AdMob.showInterstitial();
         });
         document.addEventListener('onAdPresent', function (data) { });
-        document.addEventListener('onAdLeaveApp', function (data) { });
+        document.addEventListener('onAdLeaveApp', function (data) {
+            document.getElementById('screen').style.display = 'none';     
+         });
         document.addEventListener('onAdDismiss', function (data) { 
             document.getElementById('screen').style.display = 'none';     
         });
@@ -56,7 +59,7 @@
 
     function loadInterstitial() {
         if ((/(android|windows phone)/i.test(navigator.userAgent))) {
-            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
+            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
             //document.getElementById("screen").style.display = 'none';     
         } else if ((/(ipad|iphone|ipod)/i.test(navigator.userAgent))) {
             AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
@@ -164,6 +167,7 @@ function loadStops() {
     }
 
 function loadArrivals() {
+    showAd();
     var outputContainer = $('.js-next-bus-results');
 
     $.ajax(
@@ -188,8 +192,20 @@ function loadArrivals() {
 
 function loadFaves()
 {
+    showAd();
     window.location = "Favorites.html";
-    //window.ga.trackView('Favorites');
+}
+
+function showAd()
+{
+    document.getElementById("screen").style.display = 'block';     
+    if ((/(android|windows phone)/i.test(navigator.userAgent))) {
+        AdMob.isInterstitialReady(function(isready){
+            if(isready) 
+                AdMob.showInterstitial();
+        });
+    }
+    document.getElementById("screen").style.display = 'none'; 
 }
 
 function saveFavorites()
