@@ -92,10 +92,13 @@
 function askRating()
 {
   AppRate.preferences = {
-  openStoreInApp: true,
   useLanguage:  'en',
   usesUntilPrompt: 10,
   promptAgainForEachNewVersion: true,
+  reviewType: {
+    ios: 'AppStoreReview',
+    android: 'InAppBrowser'
+  },
   storeAppURL: {
                 ios: '1296631802',
                 android: 'market://details?id=com.grandrapids.free'
