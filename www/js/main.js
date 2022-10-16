@@ -75,6 +75,7 @@
         $("span").remove();
         $(".dropList").select2();
         initApp();
+        checkPermissions();
         askRating();
         //document.getElementById('screen').style.display = 'none';     
     }
