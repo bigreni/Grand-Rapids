@@ -59,7 +59,7 @@
 
     function loadInterstitial() {
         if ((/(android|windows phone)/i.test(navigator.userAgent))) {
-            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
+            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
             //document.getElementById("screen").style.display = 'none';     
         } else if ((/(ipad|iphone|ipod)/i.test(navigator.userAgent))) {
             AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
@@ -92,10 +92,13 @@
 function askRating()
 {
   AppRate.preferences = {
-  openStoreInApp: true,
   useLanguage:  'en',
   usesUntilPrompt: 10,
   promptAgainForEachNewVersion: true,
+  reviewType: {
+    ios: 'AppStoreReview',
+    android: 'InAppBrowser'
+  },
   storeAppURL: {
                 ios: '1296631802',
                 android: 'market://details?id=com.grandrapids.free'

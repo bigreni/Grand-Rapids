@@ -43,8 +43,8 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
         var cachebuster = Math.round(new Date().getTime() / 1000);
-        document.write('<script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/bigreni.com/js/grandrapids/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
-        //document.write('<script type="text/javascript" src="js/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        // document.write('<script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/bigreni.com/js/grandrapids/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        document.write('<script type="text/javascript" src="js/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
     </script>	
     <div id="screen" class="splashscreen" style="display: none"></div>
         <script>
@@ -65,6 +65,7 @@
  					<div>
 						<label for="route">Route:</label>
 						    <select name="routeNumber" id="routeSelect" class="dropList" onchange="loadDirections();">
+                            <option value="0" selected disabled>- Select Route -</option>
                             <option value="90" data-direction="NS">(SL) Silver Line</option>
 							<option value="1" data-direction="NS">(1) Division/Madison</option>
 							<option value="2" data-direction="NS">(2) Kalamazoo</option>

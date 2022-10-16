@@ -62,7 +62,7 @@
             AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
             //document.getElementById("screen").style.display = 'none';     
         } else if ((/(ipad|iphone|ipod)/i.test(navigator.userAgent))) {
-            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: true });
+            AdMob.prepareInterstitial({ adId: admobid.interstitial, isTesting: false, autoShow: false });
             //document.getElementById("screen").style.display = 'none';     
         } else
         {
@@ -74,9 +74,6 @@
     {
         $("span").remove();
         $(".dropList").select2();
-        //window.ga.startTrackerWithId('UA-88579601-5', 1, function(msg) {
-        //    window.ga.trackView('Home');
-        //});
         initApp();
         askRating();
         //document.getElementById('screen').style.display = 'none';     
@@ -89,16 +86,34 @@
         document.getElementById('screen').style.display = 'none';     
     }
 
+    function checkPermissions(){
+        const idfaPlugin = cordova.plugins.idfa;
+    
+        idfaPlugin.getInfo()
+            .then(info => {
+                if (!info.trackingLimited) {
+                    return info.idfa || info.aaid;
+                } else if (info.trackingPermission === idfaPlugin.TRACKING_PERMISSION_NOT_DETERMINED) {
+                    return idfaPlugin.requestPermission().then(result => {
+                        if (result === idfaPlugin.TRACKING_PERMISSION_AUTHORIZED) {
+                            return idfaPlugin.getInfo().then(info => {
+                                return info.idfa || info.aaid;
+                            });
+                        }
+                    });
+                }
+            });
+    }
+
 function askRating()
 {
-  AppRate.preferences = {
-  useLanguage:  'en',
+cordova.plugins.AppRate.setPreferences = {
+    reviewType: {
+        ios: 'AppStoreReview',
+        android: 'InAppBrowser'
+        },
   usesUntilPrompt: 10,
   promptAgainForEachNewVersion: true,
-  reviewType: {
-    ios: 'AppStoreReview',
-    android: 'InAppBrowser'
-  },
   storeAppURL: {
                 ios: '1296631802',
                 android: 'market://details?id=com.grandrapids.free'
@@ -110,9 +125,7 @@ AppRate.promptForRating(false);
 
 
 function loadDirections() {
-        $('.js-next-bus-results').html('').hide(); // reset output container's html
-        document.getElementById('btnSave').style.visibility = "hidden";
-        $("#message").text('');
+        reset();
         $("#routeStopSelect").attr("disabled", "");
         $("#routeStopSelect").val('0');
 
@@ -143,10 +156,7 @@ function loadDirections() {
 
 
 function loadStops() {
-        $('.js-next-bus-results').html('').hide(); // reset output container's html
-        document.getElementById('btnSave').style.visibility = "hidden";
-        $("#message").text('');
-
+        reset();
         var request = new XMLHttpRequest();
         request.open("GET", "https://m.ridetherapid.org/api/routes/stops?routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(), true);
         request.onreadystatechange = function () {//Call a function when the state changes.
@@ -201,14 +211,21 @@ function loadFaves()
 
 function showAd()
 {
-    document.getElementById("screen").style.display = 'block';     
-    if ((/(android|windows phone)/i.test(navigator.userAgent))) {
-        AdMob.isInterstitialReady(function(isready){
-            if(isready) 
-                AdMob.showInterstitial();
-        });
-    }
-    document.getElementById("screen").style.display = 'none'; 
+document.getElementById("screen").style.display = 'block';     
+if ((/(ipad|iphone|ipod|android|windows phone)/i.test(navigator.userAgent))) {
+    AdMob.isInterstitialReady(function(isready){
+        if(isready) 
+            AdMob.showInterstitial();
+    });
+}
+document.getElementById("screen").style.display = 'none'; 
+}
+
+function reset()
+{
+    $('.js-next-bus-results').html('').hide(); // reset output container's html
+    document.getElementById('btnSave').style.visibility = "hidden";
+    $("#message").text('');
 }
 
 function saveFavorites()
