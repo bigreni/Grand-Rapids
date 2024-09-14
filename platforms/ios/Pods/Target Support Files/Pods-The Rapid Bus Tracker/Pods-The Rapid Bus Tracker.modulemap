@@ -1,0 +1,6 @@
+framework module Pods_The_Rapid_Bus_Tracker {
+  umbrella header "Pods-The Rapid Bus Tracker-umbrella.h"
+
+  export *
+  module * { export * }
+}
