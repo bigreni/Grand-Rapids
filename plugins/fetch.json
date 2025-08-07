@@ -79,14 +79,6 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-purchase": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-plugin-purchase"
-    },
-    "is_top_level": true,
-    "variables": {}
-  },
   "admob-plus-cordova": {
     "source": {
       "type": "registry",
@@ -97,5 +89,13 @@
       "APP_ID_ANDROID": "ca-app-pub-9249695405712287~5920966662",
       "APP_ID_IOS": "ca-app-pub-9249695405712287~9159743219"
     }
+  },
+  "cordova-plugin-purchase": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-purchase"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

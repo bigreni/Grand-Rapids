@@ -35,10 +35,10 @@
     "cordova-plugin-nativestorage": {
       "PACKAGE_NAME": "com.grandrapids.free"
     },
-    "cordova-plugin-purchase": {
+    "cordova-plugin-wkwebview-file-xhr": {
       "PACKAGE_NAME": "com.grandrapids.free"
     },
-    "cordova-plugin-wkwebview-file-xhr": {
+    "cordova-plugin-purchase": {
       "PACKAGE_NAME": "com.grandrapids.free"
     }
   },

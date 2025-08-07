@@ -43,8 +43,8 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript">
         var cachebuster = Math.round(new Date().getTime() / 1000);
-        document.write('<script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/bigreni.com/js/grandrapids/mainpro.js?cb=' +cachebuster+'"></scr' + 'ipt>');
-        // document.write('<script type="text/javascript" src="js/main.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        // document.write('<script type="text/javascript" src="https://s3.us-east-2.amazonaws.com/bigreni.com/js/grandrapids/mainpro.js?cb=' +cachebuster+'"></scr' + 'ipt>');
+        document.write('<script type="text/javascript" src="js/mainpro.js?cb=' +cachebuster+'"></scr' + 'ipt>');
     </script>	
     <div id="screen" class="splashscreen" style="display: none"></div>
         <script>
@@ -67,31 +67,31 @@
 						    <select name="routeNumber" id="routeSelect" class="dropList" onchange="loadDirections();">
                             <option value="0" selected disabled>- Select Route -</option>
                             <option value="90" data-direction="NS">(SL) Silver Line</option>
-							<option value="1" data-direction="NS">(1) Division/Madison</option>
-							<option value="2" data-direction="NS">(2) Kalamazoo</option>
-							<option value="3" data-direction="NS">(3) Wyoming/Rivertown</option>
-							<option value="4" data-direction="NS">(4) Eastern</option>
-							<option value="5" data-direction="NS">(5) Wealthy/Woodland</option>
-							<option value="6" data-direction="NS">(6) Eastown/Woodland </option>
-							<option value="7" data-direction="EW">(7) West Leonard</option>
-							<option value="8" data-direction="NS">(8) Prairie/Rivertown</option>
-							<option value="9" data-direction="NS">(9) Alpine</option>
-							<option value="10" data-direction="NS">(10) Clyde Park</option>
-							<option value="11" data-direction="NS">(11) Plainfield</option>
-							<option value="12" data-direction="EW">(12) Westside</option>
-							<option value="13" data-direction="NS">(13) Michigan/Fuller</option>
-							<option value="14" data-direction="EW">(14) East Fulton</option>
-							<option value="15" data-direction="EW">(15) East Leonard</option>
-							<option value="24" data-direction="EW">(24) Burton</option>
-							<option value="27" data-direction="Loop">(27) Airport Industrial</option>
-							<option value="28" data-direction="EW">(28) West 28th</option>
-							<option value="29" data-direction="EW">(29) East 28th</option>
-							<option value="37" data-direction="Loop">(37) GVSU North Campus </option>
-							<option value="44" data-direction="EW">(44) 44th Street</option>
-							<option value="45" data-direction="EW">(LL) Laker Line</option>
-							<option value="48" data-direction="Loop">(48) GVSU South Campus </option>
-							<option value="60" data-direction="Loop">(60) GRCC</option>
-							<option value="85" data-direction="Loop">(85) Combined 37/48</option>
+                            <option value="1" data-direction="NS">(1) Madison</option>
+                            <option value="2" data-direction="NS">(2) Kalamazoo</option>
+                            <option value="3" data-direction="NS">(3) Wyoming/Rivertown</option>
+                            <option value="4" data-direction="NS">(4) Eastern</option>
+                            <option value="5" data-direction="NS">(5) Wealthy</option>
+                            <option value="6" data-direction="NS">(6) Eastown</option>
+                            <option value="7" data-direction="EW">(7) West Leonard</option>
+                            <option value="8" data-direction="NS">(8) Prairie</option>
+                            <option value="9" data-direction="NS">(9) Alpine</option>
+                            <option value="10" data-direction="NS">(10) Clyde Park</option>
+                            <option value="11" data-direction="NS">(11) Plainfield</option>
+                            <option value="12" data-direction="EW">(12) Westside</option>
+                            <option value="13" data-direction="NS">(13) Michigan/Fuller</option>
+                            <option value="14" data-direction="EW">(14) Fulton</option>
+                            <option value="15" data-direction="EW">(15) East Leonard</option>
+                            <option value="24" data-direction="EW">(24) Burton</option>
+                            <option value="27" data-direction="Loop">(27) Airport Industrial</option>
+                            <option value="28" data-direction="EW">(28) 28th Street</option>
+                            <option value="33" data-direction="EW">(33) Walker Industrial</option>
+                            <option value="37" data-direction="Loop">(37) GVSU North Campus </option>
+                            <option value="44" data-direction="EW">(44) 44th Street</option>
+                            <option value="45" data-direction="EW">(LL) Laker Line</option>
+                            <option value="48" data-direction="Loop">(48) GVSU South Campus </option>
+                            <option value="60" data-direction="Loop">(60) GRCC</option>
+                            <option value="85" data-direction="Loop">(85) Combined 37/48</option>
                             </select>
                		</div>
 				
@@ -107,6 +107,9 @@
     			            <option value="0" selected>- Select Stop -</option>
                     	</select>
     	            </div>
+                    <div id="divSubscribe" style="display: none;">
+                        <h4 style="text-align:center;"><button id="btnSubscribe" onclick="proSubscription();" class="premium">Remove Ads</button></h4>
+                    </div>                    
                     <h2 style="text-align:center;">
                         <button onclick="saveFavorites();" id="btnSave" style="border:none; background-color: lightgreen; color:black;visibility: hidden;">&#x2764; Add to favorites</button>
                     </h2>
