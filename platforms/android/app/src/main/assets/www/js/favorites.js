@@ -31,24 +31,31 @@ function removeFavorite(index)
     location.reload();
 }
 
+// function loadFaveArrivals(route,direction,stop)
+// {
+//     var outputContainer = $('.js-next-bus-results');
+//     $.ajax(
+//           {
+//               type: "GET",
+//               url: "https://www.ridetherapid.org/api/routes/routeStopInfo",
+//               data: "routeNumber=" + route + "&direction=" + direction + "&stopID=" + stop + "&manualStopID=",
+//               //contentType: "application/json;	charset=utf-8",
+//               dataType: "text",
+//               success: function (output) {
+//                   if (output == null || output.length == 0) {
+//                       $(outputContainer).html('').hide(); // reset output container's html
+//                   }
+//                   else {
+//                       $(outputContainer).html(output).show();
+//                   }
+//               }
+//           });
+// }
+
 function loadFaveArrivals(route,direction,stop)
 {
     var outputContainer = $('.js-next-bus-results');
-    $.ajax(
-          {
-              type: "GET",
-              url: "https://m.ridetherapid.org/api/routes/routeStopInfo",
-              data: "routeNumber=" + route + "&direction=" + direction + "&stopID=" + stop + "&manualStopID=",
-              contentType: "application/json;	charset=utf-8",
-              dataType: "text",
-              success: function (output) {
-                  if (output == null || output.length == 0) {
-                      $(outputContainer).html('').hide(); // reset output container's html
-                  }
-                  else {
-                      $(outputContainer).html(output).show();
-                  }
-              }
-          });
+    output = '<iframe id="frmResults" style="width:100%; height:400px; border:none;" src="https://www.ridetherapid.org/api/routes/routeStopInfo?routeNumber=' + route + '&direction=' + direction + '&stopID=' + stop + '&manualStopID="></iframe>';
+    $(outputContainer).html(output).show();
 }
 

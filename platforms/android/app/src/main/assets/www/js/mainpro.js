@@ -132,53 +132,134 @@ function loadDirections() {
         $(".dropList").select2();
     }
 
+// function loadStops(){
+//     $.getJSON("https://www.ridetherapid.org/api/routes/stops?routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val() + "&jsoncallback=?",'',function(result){
+//    //response data are now in the result variable
+//    alert(result);
+// }).fail(function()
+// {
+//     console.log('error');
+//     console.log(arguments);//<-- check these for clues
+// }).always(function()
+// {//add this to check if your code even gets executed...
+//     console.log('getJSON called');
+// });;
+//     // $.get('https://www.ridetherapid.org/api/routes/stops', { 'routeNumber':$("#routeSelect").val(),'direction': $("#routeDirectionSelect").val() }, function(stops) {
+//     //             var list = $("#routeStopSelect");
+//     //             $(list).empty();
+//     //             $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
+//     //             $.each(stops, function(i, stop) {
+//     //                 //   output += '<option value="'+stop.id+'">'+stop.name+'</option>';
+//     //                     $(list).append($("<option />").val(stop.id).text(stop.name));
+//     //             });
+//     //             $(list).removeAttr('disabled');
+//     //             $(list).val('0');
+//     //             $("span").remove();
+//     //             $(".dropList").select2();  
+//     //         });
+// } 
 
-function loadStops() {
-        reset();
-        var request = new XMLHttpRequest();
-        request.open("GET", "https://m.ridetherapid.org/api/routes/stops?routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(), true);
-        request.onreadystatechange = function () {//Call a function when the state changes.
-            if (request.readyState == 4) {
-                if (request.status == 200 || request.status == 0) {
-                    var msg = JSON.parse(request.responseText);
-                    var list = $("#routeStopSelect");
-                    $(list).empty();
-                    $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
-                    $.each(msg, function (index, item) {
-                        $(list).append($("<option />").val(item.id).text(item.name));
-                    });
-                    $(list).removeAttr('disabled');
-                    $(list).val('0');
-                    $("span").remove();
-                    $(".dropList").select2();
-                }
-            }
-        }
-    request.send();
-    }
+
+
+
+function loadStops(){
+        $.ajax(
+          {
+              type: "GET",
+              url: "https://www.ridetherapid.org/api/routes/stops",
+              data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(),
+              //contentType: "text/html;	charset=utf-8",
+              jsonpCallback: "processStops",
+              dataType: "jsonp",
+          });
+}
+
+function processStops(output)
+{
+    var list = $("#routeStopSelect");
+    $(list).empty();
+    $(list).append($("<option disabled/>").val("0").text("- Select Stop -")); 
+    $.each(output, function(i, stop) {
+        //   output += '<option value="'+stop.id+'">'+stop.name+'</option>';
+            $(list).append($("<option />").val(stop.id).text(stop.name));
+    });
+    $(list).removeAttr('disabled');
+    $(list).val('0');
+    $("span").remove();
+    $(".dropList").select2();
+}
+
+// function loadStops() {
+//         reset();
+//         var request = new XMLHttpRequest();
+//         request.open("GET", "https://www.ridetherapid.org/api/routes/stops?routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val(), true);
+//         request.onreadystatechange = function () {//Call a function when the state changes.
+//             if (request.readyState == 4) {
+//                 if (request.status == 200 || request.status == 0) {
+//                     var msg = JSON.parse(request.responseText);
+//                     var list = $("#routeStopSelect");
+//                     $(list).empty();
+//                     $(list).append($("<option disabled/>").val("0").text("- Select Stop -"));
+//                     $.each(msg, function (index, item) {
+//                         $(list).append($("<option />").val(item.id).text(item.name));
+//                     });
+//                     $(list).removeAttr('disabled');
+//                     $(list).val('0');
+//                     $("span").remove();
+//                     $(".dropList").select2();
+//                 }
+//             }
+//         }
+//     request.send();
+//     }
+
+// function loadArrivals() {
+//     showAd();
+//     var outputContainer = $('.js-next-bus-results');
+
+//     $.ajax(
+//           {
+//               type: "GET",
+//               url: "https://www.ridetherapid.org/api/routes/routeStopInfo",
+//               data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val() + "&stopID=" + $("#routeStopSelect").val() + "&manualStopID=",
+//               //contentType: "text/html;	charset=utf-8",
+//               dataFilter: function(data, type) {
+//             // Example: If the server sends a string and you want to parse it as JSON
+//                 if (type === 'json' && typeof data === 'string') {
+//                     return JSON.parse(data);
+//                 }
+//                 // Example: Modify a specific part of the data
+//                 if (type === 'json') {
+//                     let parsedData = JSON.parse(data);
+//                     parsedData.modifiedField = 'new value';
+//                     return JSON.stringify(parsedData);
+//                 }
+//                 return data; // Return the (possibly altered) data
+//             },
+//               jsonpCallback: "processArrivals",              
+//               dataType: "jsonp",
+//               success: function (output) {
+//                   if (output == null || output.length == 0) {
+//                       $(outputContainer).html('').hide(); // reset output container's html
+//                       document.getElementById('btnSave').style.visibility = "hidden";
+//                   }
+//                   else {
+//                       $(outputContainer).html(output).show();
+//                       document.getElementById('btnSave').style.visibility = "visible";
+//                   }
+//               }
+//           });
+// }
 
 function loadArrivals() {
     showAd();
     var outputContainer = $('.js-next-bus-results');
-
-    $.ajax(
-          {
-              type: "GET",
-              url: "https://m.ridetherapid.org/api/routes/routeStopInfo",
-              data: "routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val() + "&stopID=" + $("#routeStopSelect").val() + "&manualStopID=",
-              contentType: "text/html;	charset=utf-8",
-              dataType: "text",
-              success: function (output) {
-                  if (output == null || output.length == 0) {
-                      $(outputContainer).html('').hide(); // reset output container's html
-                      document.getElementById('btnSave').style.visibility = "hidden";
-                  }
-                  else {
-                      $(outputContainer).html(output).show();
-                      document.getElementById('btnSave').style.visibility = "visible";
-                  }
-              }
-          });
+    output = '<iframe id="frmResults" style="width:100%; height:400px; border:none;" src="https://www.ridetherapid.org/api/routes/routeStopInfo?routeNumber=' + $("#routeSelect").val() + '&direction=' + $("#routeDirectionSelect").val() + '&stopID=' + $("#routeStopSelect").val() + '&manualStopID="></iframe>';
+    $(outputContainer).html(output).show();
+    document.getElementById('btnSave').style.visibility = "visible";
+    //document.getElementsByClassName('js-next-bus-results')[0].style.display = 'block';
+    //document.getElementById('frmResults').src = "https://www.ridetherapid.org/api/routes/routeStopInfo?routeNumber=" + $("#routeSelect").val() + "&direction=" + $("#routeDirectionSelect").val() + "&stopID=" + $("#routeStopSelect").val() + "&manualStopID="
+    //document.getElementById('btnSave').style.visibility = "visible";
 }
 
 function loadFaves()
@@ -198,7 +279,7 @@ function showAd()
 
 function reset()
 {
-    $('.js-next-bus-results').html('').hide(); // reset output container's html
+    //$('.js-next-bus-results').html('').hide(); // reset output container's html
     document.getElementById('btnSave').style.visibility = "hidden";
     $("#message").text('');
 }
